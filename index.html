@@ -44,12 +44,22 @@
 				width: 75%;
 			}
 		}
-		@media screen and (max-width: 550px){
+		/*and (max-width: 0px)*/
+		@media screen 
+		and (max-device-width : 667px)
+		{
+			body {
+				font-size: 36px;
+			}
+			.header {
+				height: 120px;
+			}
 			#articles {
 				width: 100%;
-				font-size: 26px;
 			}
 			#articles li.article {
+		    font-size: 36px;
+				padding: 20px 0 50px 30px;
 				margin: 0px;
 			}
 		}
