@@ -4,6 +4,15 @@
 	<meta charset="UTF-8">
 	<title>AF</title>
 	<style>
+		/**
+		 * reset 
+		 */
+		body {
+			margin: 0;
+		}
+		ul {
+			padding: 0;
+		}
 		.header {
 			background: #3f51b5;
 			height: 60px;
@@ -41,7 +50,7 @@
 				font-size: 26px;
 			}
 			#articles li.article {
-				margin: 5px;
+				margin: 0px;
 			}
 		}
 
@@ -101,7 +110,7 @@
 		</div>
 	</div>
 	<div id="main">
-		<h1>Articles</h1>
+		<h1 class="article">Articles</h1>
 		<ul id="articles">
 			<li class="article"><a href="./public/vue-list-animation.html">Vue List Items Animation...</a></li>
 			<li class="article"><a href="./public/vue-list-animation.html">Vue Reactivity in Depth...</a></li>
