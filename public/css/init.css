@@ -1,0 +1,49 @@
+/**
+ * reset browser default sytles
+ */
+body {
+	margin: 0;
+}
+ul {
+	padding-left: 0;
+}
+li {
+	list-style-type: none;
+}
+a {
+	color: #000;
+}
+
+/**
+ * init html root element font-size
+ */
+html {
+	font-size: 62.5%;
+}
+body {
+	font-size: 1.8rem;
+}
+h1 {
+	font-size: 5.2rem;
+}
+h2 {
+	font-size: 4rem;
+}
+h3 {
+	font-size: 3.6rem;
+}
+h4 {
+	font-size: 3.2rem;
+}
+h5 {
+	font-size: 2.8rem;
+}
+h6 {
+	font-size: 2.4 rem;
+}
+
+/*@media screen and (max-width: 36em){
+	html{
+		font-size:59%;color: red;background: cornsilk;margin: 20x;font-weight: bold;
+		}
+}*/
