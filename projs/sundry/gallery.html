@@ -26,6 +26,10 @@
 		ul#image-gallery li a {
 			text-decoration: none;
 		}
+		ul#image-gallery .image-nail {
+			width: 50px;
+			height: 40px;
+		}
 		clearfix::after {
 			content: '';
 			display: inline-block;
@@ -37,10 +41,25 @@
 <body>
 	<h1>Stars Gallery</h1>
 	<ul id="image-gallery" class="clearfix">
-		<li><a href="./images/messi.jpg" title="Messi">Messi</a></li>
-		<li><a href="./images/ronaldo.jpg" title="Ronaldo">Ronaldo</a></li>
-		<li><a href="./images/zlatan.jpg" title="Zlatan">Zlatan</a></li>
-		<li><a href="./images/ozil.jpg" title="Ozil">Ozil</a></li>
+		<li>
+			<a href="./images/messi.jpg" title="Messi">
+				<img class="image-nail" src="./images/messi.jpg" alt="image nail">
+			</a>
+		</li>
+		<li>
+			<a href="./images/ronaldo.jpg" title="Ronaldo">
+				<img class="image-nail" src="./images/ronaldo.jpg" alt="image nail">
+			</a>
+		</li>
+		<li>
+			<a href="./images/zlatan.jpg" title="Zlatan">
+				<img class="image-nail" src="./images/zlatan.jpg" alt="image nail"></a>
+		</li>
+		<li>
+			<a href="./images/ozil.jpg" title="Ozil">
+				<img class="image-nail" src="./images/ozil.jpg" alt="image nail">
+			</a>
+		</li>
 	</ul>
 	<img id="img-holder" src="" alt="Star Image">
 	<p id="text-holder">Choose an image...</p>
