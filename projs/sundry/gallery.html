@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Stars Gallery</title>
+	<style>
+		body {
+			width: 60%;
+			margin: auto;
+		}
+		img {
+			width: 400px;
+			height: 300px;
+			text-align: center;
+			line-height: 300px;
+			font-size: 36px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Stars Gallery</h1>
+	<ul>
+		<li><a href="./images/messi.jpg" title="Messi" onclick="switchPic(this); return false;">Messi</a></li>
+		<li><a href="./images/ronaldo.jpg" title="Ronaldo" onclick="switchPic(this); return false;">Ronaldo</a></li>
+		<li><a href="./images/zlatan.jpg" title="Zlatan" onclick="switchPic(this); return false;">Zlatan</a></li>
+		<li><a href="./images/ozil.jpg" title="Ozil" onclick="switchPic(this); return false;">Ozil</a></li>
+	</ul>
+	<img id="img-holder" src="" alt="Star Image">
+	<p id="text-holder">Choose an image...</p>
+
+	<script>
+		var $imgHolder = document.getElementById('img-holder')
+		var $textHolder = document.getElementById('text-holder')
+
+		var switchPic = function (pic) {
+			let src = pic.getAttribute('href')
+			let text = pic.getAttribute('title') 
+			$imgHolder.setAttribute('src', src)
+			$textHolder.firstChild.nodeValue = text
+		}
+	</script>
+</body>
+</html>
