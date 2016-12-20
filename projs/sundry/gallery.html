@@ -61,12 +61,10 @@
 			</a>
 		</li>
 	</ul>
-	<img id="img-holder" src="" alt="Star Image">
-	<p id="text-holder">Choose an image...</p>
 
 	<script>
 		/**
-		 * Add onload function.
+		 * Add onload  tool function.
 		 */
 		var addLoadEvent = function (func) {
 			var oldLoadEvent = window.onload
@@ -79,6 +77,33 @@
 				window.onload = func
 			}
 		}
+		/**
+		 * Add insertAfter tool function 
+		 */
+		var insertAfter = function (newElement, targetElement) {
+			let parent = targetElement.parentNode
+			if (parent.lastChild === targetElement) {
+				parent.appendChild(newElement)
+			} else {
+				parent.insertBefore(newElement, targetElement.nextSibling)
+			}
+		}
+
+		/**
+		 * Prepare Gallery Holder and Description
+		 */
+		 var prepareGalleryHolder = function () {
+		 	let $imgHolder = document.createElement('img')
+		 	$imgHolder.setAttribute('id', 'img-holder')
+		 	$imgHolder.setAttribute('alt', 'Star Image')
+		 	let $textHolder = document.createElement('p')
+		 	$textHolder.setAttribute('id', 'text-holder')
+		 	$textHolder.appendChild(document.createTextNode('Choose an image...'))
+
+		 	let $gallery = document.getElementById('image-gallery')
+		 	insertAfter($textHolder, $gallery)
+		 	insertAfter($imgHolder, $gallery)
+		 }
 
 		/**
 		 * switch Pictures
@@ -111,6 +136,7 @@
 		/**
 		 * add load hanlder
 		 */
+		addLoadEvent(prepareGalleryHolder)
 		addLoadEvent(prepareGallery)
 	</script>
 </body>
