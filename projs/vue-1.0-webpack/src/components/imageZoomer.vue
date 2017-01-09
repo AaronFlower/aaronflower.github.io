@@ -74,12 +74,16 @@
 
           this.$els.lens.style.maxWidth = `${this.lensMaxHeight}px`
           this.$els.lens.style.maxHeigth = `${this.lensMaxWidth}px`
+          this.$els.lens.style.width = `${this.lensMaxHeight}px`
+          this.$els.lens.style.height = `${this.lensMaxWidth}px`
         } else {
           this.$els.originImg.style.maxWidth = `${this.originMaxWidth}px`
           this.$els.originImg.style.maxHeigth = `${this.originMaxHeight}px`
 
           this.$els.lens.style.maxWidth = `${this.lensMaxWidth}px`
           this.$els.lens.style.maxHeigth = `${this.lensMaxHeight}px`
+          this.$els.lens.style.width = `${this.lensMaxWidth}px`
+          this.$els.lens.style.height = `${this.lensMaxHeight}px`
         }
         this.$els.originImg.style.transform = `rotate(${this.rotateDeg}deg)`
         this.$els.lens.style.transform = `rotate(${this.rotateDeg}deg)`
