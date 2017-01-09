@@ -2,10 +2,11 @@
   <div class="tui-image-zoomer">
     <div class="origin-image-container">
       <div class="origin-image-nail">
+
         <img v-el:origin-img :src="originImgSrc" alt="" @click="zoomOut($event)">
       </div>
       <div class="btn-group">
-        <button @click="rotate">R</button>
+        <i class="rotate-circle" @click="rotate"></i>
       </div>
     </div>
     <slot name="zoomer">
@@ -13,6 +14,9 @@
         <div v-el:lens class="lens"></div>
       </div>
     </slot>
+    <div class="container">
+      <div class="circle"></div>
+    </div>
   </div>
 </template>
 
@@ -242,6 +246,47 @@
       width: 320px;
       height: 220px;
       display: inline-block;
+    }
+  }
+
+  .rotate-circle {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    position: relative;
+    display: inline-block;
+    transform: rotate(30deg);
+    cursor: pointer;
+    &:hover {
+      background: #00BAA6;
+      &:before {
+        border-color: #00BAA6 transparent #00BAA6 #00BAA6;
+      }
+    }
+    &:before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      right: 13px;
+      position: relative;
+      top: 2px;
+      z-index: 3;
+      border-right-color: transparent;
+      border-bottom-style: dashed;
+      border-left-style: dashed;
+    }
+    &:after {
+      content: "";
+      display: block;
+      width: 7px;
+      height: 7px;
+      background: #FFF;
+      position: relative;
+      top: -25px;
+      right: 1px;
     }
   }
 
