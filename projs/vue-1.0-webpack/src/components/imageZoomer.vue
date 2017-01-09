@@ -2,8 +2,7 @@
   <div class="tui-image-zoomer">
     <div class="origin-image-container">
       <div class="origin-image-nail">
-        <!-- <img v-el:origin-img src="../assets/images/benz-02.jpg" alt="" @click="zoomImage($event)"> -->
-        <img v-el:origin-img :src="zoomImgSrc" alt="" @click="zoomOut($event)">
+        <img v-el:origin-img :src="originImgSrc" alt="" @click="zoomOut($event)">
       </div>
       <div class="btn-group">
         <button @click="rotate">R</button>
@@ -28,22 +27,38 @@
         type: [String, Number],
         default: 210
       },
-      lensHeight: {
+      lensMaxHeight: {
         type: [String, Number],
         default: 220
       },
-      lensWidth: {
+      lensMaxWidth: {
         type: [String, Number],
         default: 320
       },
       zoomImgSrc: {
         type: String,
         default: 'public/images/benz-02.jpg'
+      },
+      originImgSrc: {
+        type: String,
+        default: ''
       }
     },
     data () {
       return {
-        zoomImage: {
+        zoomImageInfo: {
+          width: 0,
+          height: 0
+        },
+        originImgInfo: {
+          width: 0,
+          height: 0
+        },
+        originImgVerticalInfo: {
+          width: 0,
+          height: 0
+        },
+        originImgHorizontalInfo: {
           width: 0,
           height: 0
         },
@@ -52,87 +67,129 @@
     },
     methods: {
       rotate () {
-        let {top, left} = this.$els.originImg.getBoundingClientRect()
-        console.log(this.$els.originImg.getBoundingClientRect())
-        console.log(top, left)
         this.rotateDeg = (this.rotateDeg + 90) % 360
         if (this.rotateDeg % 180) {
           this.$els.originImg.style.maxWidth = `${this.originMaxHeight}px`
           this.$els.originImg.style.maxHeigth = `${this.originMaxWidth}px`
 
-          this.$els.lens.style.maxWidth = `${this.lensHeight}px`
-          this.$els.lens.style.maxHeigth = `${this.lensWidth}px`
+          this.$els.lens.style.maxWidth = `${this.lensMaxHeight}px`
+          this.$els.lens.style.maxHeigth = `${this.lensMaxWidth}px`
         } else {
           this.$els.originImg.style.maxWidth = `${this.originMaxWidth}px`
           this.$els.originImg.style.maxHeigth = `${this.originMaxHeight}px`
 
-          this.$els.lens.style.maxWidth = `${this.lensWidth}px`
-          this.$els.lens.style.maxHeigth = `${this.lensHeight}px`
+          this.$els.lens.style.maxWidth = `${this.lensMaxWidth}px`
+          this.$els.lens.style.maxHeigth = `${this.lensMaxHeight}px`
         }
         this.$els.originImg.style.transform = `rotate(${this.rotateDeg}deg)`
         this.$els.lens.style.transform = `rotate(${this.rotateDeg}deg)`
+        this.switchDimension()
+      },
+      switchDimension () {
+        if (this.rotateDeg % 180) {
+          if (!this.originImgVerticalInfo.width) {
+            let computedStyle = window.getComputedStyle(this.$els.originImg)
+            this.originImgVerticalInfo.width = Number.parseInt(computedStyle.width)
+            this.originImgVerticalInfo.height = Number.parseInt(computedStyle.height)
+          }
+          this.originImgInfo.width = this.originImgVerticalInfo.height
+          this.originImgInfo.height = this.originImgVerticalInfo.width
+        } else {
+          this.originImgInfo.width = this.originImgHorizontalInfo.width
+          this.originImgInfo.height = this.originImgHorizontalInfo.height
+        }
+        let swapTemp = this.zoomImageInfo.width
+        this.zoomImageInfo.width = this.zoomImageInfo.height
+        this.zoomImageInfo.height = swapTemp
       },
       zoomOut ($event) {
         if (this.zoomReady) {
+          let halfLensMaxWidth = this.lensMaxWidth / 2
+          let halfLensMaxHeight = this.lensMaxHeight / 2
           let {top, left} = this.$els.originImg.getBoundingClientRect()
-          let offsetLeft = ($event.clientX - left) * this.scale - this.lensWidth / 2
-          let offsetTop = ($event.clientY - top) * this.scale - this.lensHeight / 2
-
-          if (offsetLeft < 0) {
-            offsetLeft = 0
-          }
-          if (offsetLeft + this.lensWidth > this.zoomImage.width) {
-            offsetLeft = this.zoomImage.width - this.lensWidth
-          }
-          if (offsetTop < 0) {
-            offsetTop = 0
-          }
-          if (offsetTop + this.lensHeight > this.zoomImage.height) {
-            offsetTop = this.zoomImage.height - this.lensHeight
-          }
-          if (this.isHorizontal) {
-            this.$els.lens.style.backgroundPosition = ` -${offsetLeft}px -${offsetTop}px`
+          let xPos = ($event.clientX - left) * this.scale
+          let yPos = ($event.clientY - top) * this.scale
+          let leftOffset, topOffset
+          if (this.rotateDeg === 90) {
+            leftOffset = yPos - halfLensMaxHeight
+            topOffset = this.zoomImageInfo.width - (xPos + halfLensMaxWidth)
+            leftOffset = leftOffset < 0 ? 0 : leftOffset
+            if (leftOffset + this.lensMaxHeight > this.zoomImageInfo.height) {
+              leftOffset = this.zoomImageInfo.height - this.lensMaxHeight
+            }
+            topOffset = topOffset < 0 ? 0 : topOffset
+            if (topOffset + this.lensMaxWidth > this.zoomImageInfo.width) {
+              topOffset = this.zoomImageInfo.width - this.lensMaxWidth
+            }
+          } else if (this.rotateDeg === 180) {
+            topOffset = this.zoomImageInfo.height - (yPos + halfLensMaxHeight)
+            leftOffset = this.zoomImageInfo.width - (xPos + halfLensMaxWidth)
+            leftOffset = leftOffset < 0 ? 0 : leftOffset
+            if (leftOffset + this.lensMaxWidth > this.zoomImageInfo.width) {
+              leftOffset = this.zoomImageInfo.width - this.lensMaxWidth
+            }
+            topOffset = topOffset < 0 ? 0 : topOffset
+            if (topOffset + this.lensMaxHeight > this.zoomImageInfo.height) {
+              topOffset = this.zoomImageInfo.height - this.lensMaxHeight
+            }
+          } else if (this.rotateDeg === 270) {
+            leftOffset = this.zoomImageInfo.height - (yPos + halfLensMaxHeight)
+            topOffset = xPos - halfLensMaxWidth
+            leftOffset = leftOffset < 0 ? 0 : leftOffset
+            if (leftOffset + this.lensMaxHeight > this.zoomImageInfo.height) {
+              leftOffset = this.zoomImageInfo.height - this.lensMaxHeight
+            }
+            topOffset = topOffset < 0 ? 0 : topOffset
+            if (topOffset + this.lensMaxWidth > this.zoomImageInfo.width) {
+              topOffset = this.zoomImageInfo.width - this.lensMaxWidth
+            }
           } else {
-            this.$els.lens.style.backgroundPosition = ` -${offsetTop}px -${offsetLeft}px`
+            leftOffset = xPos - halfLensMaxWidth
+            topOffset = yPos - halfLensMaxHeight
+            leftOffset = leftOffset < 0 ? 0 : leftOffset
+            if (leftOffset + this.lensMaxWidth > this.zoomImageInfo.width) {
+              leftOffset = this.zoomImageInfo.width - this.lensMaxWidth
+            }
+            topOffset = topOffset < 0 ? 0 : topOffset
+            if (topOffset + this.lensMaxHeight > this.zoomImageInfo.height) {
+              topOffset = this.zoomImageInfo.height - this.lensMaxHeight
+            }
           }
+          this.$els.lens.style.backgroundPosition = ` -${leftOffset}px -${topOffset}px`
         }
       },
+      /**
+       * 获取初始化图片参数。
+       */
       init () {
+        let computedStyle = window.getComputedStyle(this.$els.originImg)
+        this.originImgHorizontalInfo.width = this.originImgInfo.width = Number.parseInt(computedStyle.width)
+        this.originImgHorizontalInfo.height = this.originImgInfo.height = Number.parseInt(computedStyle.height)
         let _self = this
         let image = new window.Image()
         image.onload = function () {
-          _self.zoomImage.width = image.width
-          _self.zoomImage.height = image.height
+          _self.zoomImageInfo.width = image.width
+          _self.zoomImageInfo.height = image.height
         }
         image.src = this.zoomImgSrc
       }
     },
     computed: {
       zoomReady () {
-        return this.zoomImage.width && this.zoomImage.height
+        return this.zoomImageInfo.width && this.zoomImageInfo.height
       },
       scale () {
-        let ws = this.zoomImage.width / this.originMaxWidth
-        let hs = this.zoomImage.height / this.originMaxHeight
+        let ws = this.zoomImageInfo.width / this.originImgInfo.width
+        let hs = this.zoomImageInfo.height / this.originImgInfo.height
         return ws > hs ? ws : hs
-      },
-      isHorizontal () {
-        return !this.rotateDeg % 180
       }
     },
     ready () {
       if (this.$els.originImg.complete) {
         this.init()
-        console.log('if')
       } else {
         this.$els.originImg.onload = this.init
-        console.log('else')
       }
-      // if (this.$els.originImg.complete) {
-      //  console.log('completed!..')
-      // } else {
-      //  console.log(this)
-      // }
     }
   }
 </script>
