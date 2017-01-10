@@ -2,7 +2,6 @@
   <div class="tui-image-zoomer">
     <div class="origin-image-container">
       <div class="origin-image-nail">
-
         <img v-el:origin-img :src="originImgSrc" alt="" @click="zoomOut($event)">
       </div>
       <div class="btn-group">
@@ -166,6 +165,59 @@
           this.$els.lens.style.backgroundPosition = ` -${leftOffset}px -${topOffset}px`
         }
       },
+      createZoomerLayer () {
+        let {top, left} = this.$els.originImg.getBoundingClientRect()
+        let $layerContainer = document.createElement('div')
+        $layerContainer.className = 'image-zoomer-container'
+        let $layer = document.createElement('div')
+        $layer.className = 'image-zoomer-layer'
+        $layerContainer.style = `
+          position: absolute;
+          height: ${this.originImgInfo.height}px;
+          width: ${this.originImgInfo.width}px;
+          top: ${top}px;
+          left: ${left}px;
+          cursor: pointer;
+        `
+        $layer.style = `
+          width: ${this.originImgInfo.width}px;
+          height: ${this.originImgInfo.height}px;
+          background-repeat: no-repeat;
+          background: url(${this.zoomImgSrc});
+          background-position: 0 0;
+          display: none;
+        `
+        $layerContainer.appendChild($layer)
+        let _self = this
+        $layerContainer.addEventListener('mousemove', function ($event) {
+          let halfLensMaxWidth = _self.originImgInfo.width / 2
+          let halfLensMaxHeight = _self.originImgInfo.height / 2
+          let {top, left} = _self.$els.originImg.getBoundingClientRect()
+          let xPos = ($event.clientX - left) * _self.scale
+          let yPos = ($event.clientY - top) * _self.scale
+
+          let leftOffset = xPos - halfLensMaxWidth
+          let topOffset = yPos - halfLensMaxHeight
+          leftOffset = leftOffset < 0 ? 0 : leftOffset
+          if (leftOffset + _self.originImgInfo.width > _self.zoomImageInfo.width) {
+            leftOffset = _self.zoomImageInfo.width - _self.originImgInfo.width
+          }
+          topOffset = topOffset < 0 ? 0 : topOffset
+          if (topOffset + _self.originImgInfo.height > _self.zoomImageInfo.height) {
+            topOffset = _self.zoomImageInfo.height - _self.originImgInfo.height
+          }
+          $layer.style.display = 'inline-block'
+          $layer.style.backgroundPosition = ` -${leftOffset}px -${topOffset}px`
+        })
+        $layerContainer.addEventListener('mouseleave', function () {
+          $layer.style.display = 'none'
+        })
+        $layerContainer.addEventListener('click', function ($event) {
+          _self.zoomOut($event)
+        })
+
+        document.body.appendChild($layerContainer)
+      },
       /**
        * 获取初始化图片参数。
        */
@@ -173,6 +225,7 @@
         let computedStyle = window.getComputedStyle(this.$els.originImg)
         this.originImgHorizontalInfo.width = this.originImgInfo.width = Number.parseInt(computedStyle.width)
         this.originImgHorizontalInfo.height = this.originImgInfo.height = Number.parseInt(computedStyle.height)
+        this.createZoomerLayer()
         let _self = this
         let image = new window.Image()
         image.onload = function () {
