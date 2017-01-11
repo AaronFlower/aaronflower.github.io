@@ -342,5 +342,4 @@
       right: 1px;
     }
   }
-
 </style>
