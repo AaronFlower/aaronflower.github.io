@@ -14,7 +14,8 @@
   }
 })(window || this, function () {
   var defaults = {
-    zoom: 0.10
+    zoom: 0.10,
+    maxZoomTimes: 5
   };
 
   var canvas = document.createElement('canvas');
@@ -90,16 +91,21 @@
       // Use the previous offset to get the percent offset between the bg edge and cursor:
       var bgRatioX = bgCursorX/bgWidth;
       var bgRatioY = bgCursorY/bgHeight;
-
-      // Update the bg size:
+      // Compute the bg size
+      var tmpBgWidth, tmpBgHeight
       if (deltaY < 0) {
-        bgWidth += bgWidth*settings.zoom;
-        bgHeight += bgHeight*settings.zoom;
+        tmpBgWidth = bgWidth + bgWidth*settings.zoom;
+        tmpBgHeight = bgHeight + bgHeight*settings.zoom;
       } else {
-        bgWidth -= bgWidth*settings.zoom;
-        bgHeight -= bgHeight*settings.zoom;
+       tmpBgWidth = bgWidth - bgWidth*settings.zoom;
+       tmpBgHeight = bgHeight - bgHeight*settings.zoom;
       }
-
+      if (tmpBgWidth / width > settings.maxZoomTimes) {
+        return
+      }
+      // Update the bg size:
+      bgWidth = tmpBgWidth
+      bgHeight = tmpBgHeight
       // Take the percent offset and apply it to the new size:
       bgPosX = offsetX - (bgWidth * bgRatioX);
       bgPosY = offsetY - (bgHeight * bgRatioY);
