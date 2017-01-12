@@ -137,7 +137,7 @@
           bgPosY += offsetX;
           break;
       case 0:
-        default:
+      default:
           bgPosX += offsetX;
           bgPosY += offsetY;
           break;

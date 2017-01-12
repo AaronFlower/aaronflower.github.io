@@ -16,7 +16,7 @@
         zoom: this.params.zoomPercent || 0.02,
         maxZoomTimes: this.params.maxZoomTimes || 5
       })
-      this.el.dataset.rotateDeg = 0
+      this.el.dataset.rotateDeg = this.params.rotateDeg || 0
     }
   }
 </script>
