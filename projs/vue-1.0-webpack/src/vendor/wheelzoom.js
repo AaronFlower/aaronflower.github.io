@@ -120,8 +120,28 @@
 
     function drag(e) {
       e.preventDefault();
-      bgPosX += (e.pageX - previousEvent.pageX);
-      bgPosY += (e.pageY - previousEvent.pageY);
+      let rotateDeg = parseInt(e.target.dataset.rotateDeg) % 360;
+      let offsetX = e.pageX - previousEvent.pageX;
+      let offsetY = e.pageY - previousEvent.pageY;
+      switch (rotateDeg) {
+      case 90:
+          bgPosX += offsetY
+          bgPosY += -offsetX
+          break;
+      case 180:
+          bgPosX += -offsetX;
+          bgPosY += -offsetY;
+          break;
+      case 270:
+          bgPosX += -offsetY;
+          bgPosY += offsetX;
+          break;
+      case 0:
+        default:
+          bgPosX += offsetX;
+          bgPosY += offsetY;
+          break;
+      }
       previousEvent = e;
       updateBgStyle();
     }
