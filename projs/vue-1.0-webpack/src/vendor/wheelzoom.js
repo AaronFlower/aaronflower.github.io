@@ -182,6 +182,7 @@
     }
 
     var destroy = function (originalProperties) {
+      console.log('Kidding: destroy....')
       img.removeEventListener('wheelzoom.destroy', destroy);
       img.removeEventListener('wheelzoom.reset', reset);
       img.removeEventListener('load', load);
@@ -198,7 +199,7 @@
       backgroundRepeat: img.style.backgroundRepeat,
       src: img.src
     });
-
+    console.log('destroy...')
     img.addEventListener('wheelzoom.destroy', destroy);
 
     options = options || {};

@@ -25,13 +25,17 @@
       maxZoomOutTimes: {
         type: Number,
         default: 5
+      },
+      rotateDeg: {
+        type: Number,
+        default: 0
       }
     },
     data () {
       return {
         height: 0,
         width: 0,
-        zoom: 0.01,
+        zoom: 0.05,
         previousPos: {
           posX: 0,
           posY: 0
@@ -47,32 +51,30 @@
         console.log('imgWheel', e)
         e.preventDefault()
         let deltaY = 0
+        let posX = e.clientX
+        let posY = e.clientY
         if (e.deltaY) { // FireFox 17+ (IE9+, Chrome 31+?)
           deltaY = e.deltaY
         } else if (e.wheelDelta) {
           deltaY = -e.wheelDelta
         }
-        if (deltaY > 0 && this.height + this.height * this.zoom > this.maxZoomOutHeight) {
+        if (deltaY > 0 && this.height * (1 + this.zoom) > this.maxZoomOutHeight || deltaY < 0 && this.height * (1 - this.zoom) <= this.originHeight) {
           return
         }
+        let rect = e.target.getBoundingClientRect()
         if (deltaY > 0) {
           this.width += this.width * this.zoom
           this.height += this.height * this.zoom
-        } else if (deltaY < 0) {
-          if (this.height <= this.originHeight) {
-            this.width = this.originWidth
-            this.height = this.originHeight
-            this.bgPosOffset.x = this.bgPosOffset.y = 0
-            this.updateStyle()
-          } else {
-            this.width -= this.width * this.zoom
-            this.height -= this.height * this.zoom
-          }
+        } else {
+          this.width -= this.width * this.zoom
+          this.height -= this.height * this.zoom
         }
-        console.log(e.target.style.backgroundSize)
-        console.log(this.width, this.height)
+        this.bgPosOffset.x = (rect.left - posX) * (this.scale - 1)
+        this.bgPosOffset.y = (rect.top - posY) * (this.scale - 1)
         e.target.style.backgroundSize = `${this.width}px ${this.height}px`
-        console.log(e.target.style.backgroundSize)
+        // e.target.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`
+        this.updateStyle()
+        return
       },
       onMouseDown (e) {
         console.log('mousedown:', e)
@@ -81,25 +83,44 @@
         this.previousPos.posY = e.clientY
       },
       onMouseUp (e) {
-        this.offsetX = e.clientX - this.previousPos.posX
-        this.offsetY = e.clientY - this.previousPos.posY
+        let offsetX = e.clientX - this.previousPos.posX
+        let offsetY = e.clientY - this.previousPos.posY
         console.log('mouseup:', e)
-        console.log(this.offsetX, this.offsetY)
-        this.bgPosOffset.x += this.offsetX
-        this.bgPosOffset.y += this.offsetY
+        console.log(offsetX, offsetY)
+        switch (this.rotateDeg % 360) {
+          case 90:
+            this.bgPosOffset.x += offsetY
+            this.bgPosOffset.y += -offsetX
+            break
+          case 180:
+            this.bgPosOffset.x += -offsetX
+            this.bgPosOffset.y += -offsetY
+            break
+          case 270:
+            this.bgPosOffset.x += -offsetY
+            this.bgPosOffset.y += offsetX
+            break
+          case 0:
+          default:
+            this.bgPosOffset.x += offsetX
+            this.bgPosOffset.y += offsetY
+            break
+        }
+        // this.bgPosOffset.x += this.offsetX
+        // this.bgPosOffset.y += offsetY
         this.updateStyle()
       },
       updateStyle () {
         if (this.scale > 1) {
           if (this.bgPosOffset.x > 0) {
             this.bgPosOffset.x = 0
-          } else if (this.bgPosOffset.x < this.originWidth - this.width) {
+          } else if (this.bgPosOffset.x + this.width < this.originWidth) {
             this.bgPosOffset.x = this.originWidth - this.width
           }
 
           if (this.bgPosOffset.y > 0) {
             this.bgPosOffset.y = 0
-          } else if (this.bgPosOffset.y < this.originHeight - this.height) {
+          } else if (this.bgPosOffset.y + this.height < this.originHeight) {
             this.bgPosOffset.y = this.originHeight - this.height
           }
 
@@ -128,9 +149,8 @@
       }
     },
     ready () {
-      console.log('ready')
-      this.width = 330
-      this.height = 220
+      this.width = this.originWidth
+      this.height = this.originHeight
     }
   }
 </script>
