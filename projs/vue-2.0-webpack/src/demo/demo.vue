@@ -4,6 +4,8 @@
     <anchored-heading :level="1">Header 1</anchored-heading>
     <anchored-heading :level="3">Header 3</anchored-heading>
     <anchored-heading :level="5">Header 5</anchored-heading>
+    <h3 class="header-sequence">Render: anchored-heading-origin</h3>
+    <anchored-heading-origin :level="3">Header 1 <p>Anchored Origin</p></anchored-heading-origin>
     <h3 class="header-sequence">Render: repeat-render</h3>
     <repeat-render>Foo</repeat-render>
     <repeat-render :times="15">ooT</repeat-render>
@@ -14,23 +16,55 @@
     <render-non-jsx>Hello Render Non JSX</render-non-jsx>
     <h3 class="header-sequence">Render: JSX syntax</h3>
     <render-jsx>Hello Render JSX</render-jsx>
+    <h3 class="header-sequence">Render: Functional Render</h3>
+<!--     <smart-list>
+      <anchored-heading-origin>Foo<p>Functional Component</p></anchored-heading-origin>
+    </smart-list> -->
+    <h3 class="header-sequence">Template Compiler: Template Foo</h3>
+    <functional-container><template-foo></template-foo></functional-container>
+    <template-foo></template-foo>
   </div>
 </template>
 
 <script>
   import AnchoredHeading from '../components/render/anchoredHeading'
+  import AnchoredHeadingOrigin from '../components/render/anchoredHeadingOrigin'
   import RepeatRender from '../components/render/repeatRender'
   import InputModelRender from '../components/render/inputModelRender'
   import RenderNonJsx from '../components/render/RenderNonJsx'
   import RenderJsx from '../components/render/RenderJsx'
+  import SmartList from '../components/render/smartList'
+  import TemplateFoo from '../components/render/templateFoo'
+  import FunctionalContainer from '../components/render/functionalContainer'
 
   export default {
     components: {
-      AnchoredHeading, RepeatRender, InputModelRender, RenderJsx, RenderNonJsx
+      AnchoredHeading,
+      RepeatRender,
+      InputModelRender,
+      RenderJsx,
+      RenderNonJsx,
+      SmartList,
+      TemplateFoo,
+      AnchoredHeadingOrigin,
+      FunctionalContainer
+    },
+    props: {
+      items: {
+        type: Array,
+        default () {
+          return ['1', '2']
+        }
+      }
     },
     data () {
       return {
-        inputValue: 'Hello Vue'
+        inputValue: 'Hello Vue',
+        listItems: [
+          'Machine Learning',
+          'Vue Definitive Guide',
+          'Probability'
+        ]
       }
     }
   }
