@@ -23,6 +23,13 @@
     <h3 class="header-sequence">Template Compiler: Template Foo</h3>
     <functional-container><template-foo></template-foo></functional-container>
     <template-foo></template-foo>
+    <h3 class="header-sequence">Rich Editor compile</h3>
+    <rich-editor></rich-editor>
+    <h3 class="header-sequence">Scoped Slot</h3>
+    <scoped-slot></scoped-slot>
+    <h2>组件库</h2>
+    <h3>icon</h3>
+    <tui-components></tui-components>
   </div>
 </template>
 
@@ -36,6 +43,9 @@
   import SmartList from '../components/render/smartList'
   import TemplateFoo from '../components/render/templateFoo'
   import FunctionalContainer from '../components/render/functionalContainer'
+  import RichEditor from '../components/editor/RichEditor'
+  import ScopedSlot from '../components/almanac/scopedSlotChild'
+  import TuiComponents from './tuiComponents'
 
   export default {
     components: {
@@ -47,7 +57,10 @@
       SmartList,
       TemplateFoo,
       AnchoredHeadingOrigin,
-      FunctionalContainer
+      FunctionalContainer,
+      RichEditor,
+      ScopedSlot,
+      TuiComponents
     },
     props: {
       items: {
