@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'tui-icons';
+  src:  url('../fonts/tui-icons.eot?jljodm');
+  src:  url('../fonts/tui-icons.eot?jljodm#iefix') format('embedded-opentype'),
+    url('../fonts/tui-icons.ttf?jljodm') format('truetype'),
+    url('../fonts/tui-icons.woff?jljodm') format('woff'),
+    url('../fonts/tui-icons.svg?jljodm#tui-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="tui-icon-"], [class*=" tui-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'tui-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  cursor: pointer;
+}
+
+.tui-icon-paperplane:before {
+  content: "\e900";
+}
+.tui-icon-send:before {
+  content: "\e900";
+}
+.tui-icon-flight:before {
+  content: "\e900";
+}
+.tui-icon-email:before {
+  content: "\e900";
+}
+.tui-icon-github:before {
+  content: "\e901";
+}
+.tui-icon-search:before {
+  content: "\e902";
+}
+.tui-icon-facebook:before {
+  content: "\e903";
+}
+.tui-icon-twitter:before {
+  content: "\e904";
+}
+.tui-icon-check:before {
+  content: "\e5ca";
+}
+.tui-icon-expand_less:before {
+  content: "\e5ce";
+}
+.tui-icon-expand_more:before {
+  content: "\e5cf";
+}
+.tui-icon-first_page:before {
+  content: "\e5dc";
+}
+.tui-icon-kb_backspace:before {
+  content: "\e317";
+}
+.tui-icon-kb_capslock:before {
+  content: "\e318";
+}
+.tui-icon-kb_tab:before {
+  content: "\e31c";
+}
+.tui-icon-last_page:before {
+  content: "\e5dd";
+}
+.tui-icon-rotate_left:before {
+  content: "\e419";
+}
+.tui-icon-rss_feed:before {
+  content: "\e0e5";
+}
+.tui-icon-search2:before {
+  content: "\e8b6";
+}
+.tui-icon-download:before {
+  content: "\e258";
+}
+.tui-icon-emoji-flirt:before {
+  content: "\e906";
+}
+.tui-icon-weibo:before {
+  content: "\e905";
+}
+
