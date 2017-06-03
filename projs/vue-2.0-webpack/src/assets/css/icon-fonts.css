@@ -36,6 +36,7 @@
   cursor: pointer;
 }
 
+
 .tui-icon-paperplane:before {
   content: "\e900";
 }
@@ -101,5 +102,38 @@
 }
 .tui-icon-weibo:before {
   content: "\e905";
+}
+.tui-icon-loading-buble:before {
+  content: "\e907";
+}
+.tui-icon-loading-quarter:before {
+  content: "\e908";
+}
+.tui-icon-loading_3:before {
+  content: "\e909";
+}
+.tui-icon-loading-3quarters:before {
+  content: "\e90a";
+}
+.tui-icon-person:before {
+  content: "\e90e";
+}
+.tui-icon-information:before {
+  content: "\e90f";
+}
+.tui-icon-favorite:before {
+  content: "\e911";
+}
+.tui-icon-edit:before {
+  content: "\e914";
+}
+.tui-icon-thumbs-up:before {
+  content: "\e918";
+}
+.tui-icon-return:before {
+  content: "\e919";
+}
+.tui-icon-home:before {
+  content: "\e91a";
 }
 

@@ -30,6 +30,10 @@
     <h2>组件库</h2>
     <h3>icon</h3>
     <tui-components></tui-components>
+    <h3>input</h3>
+    <a-input-demo></a-input-demo>
+    <h3>滚动条</h3>
+    <scroll-bar></scroll-bar>
   </div>
 </template>
 
@@ -46,6 +50,8 @@
   import RichEditor from '../components/editor/RichEditor'
   import ScopedSlot from '../components/almanac/scopedSlotChild'
   import TuiComponents from './tuiComponents'
+  import ScrollBar from './scrollbar'
+  import AInputDemo from '../components/input/demo'
 
   export default {
     components: {
@@ -60,7 +66,9 @@
       FunctionalContainer,
       RichEditor,
       ScopedSlot,
-      TuiComponents
+      TuiComponents,
+      ScrollBar,
+      AInputDemo
     },
     props: {
       items: {

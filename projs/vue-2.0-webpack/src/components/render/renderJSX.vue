@@ -11,10 +11,16 @@
     },
     render (h) { // <-- h must be in scope
       return (
-        <AnchoredHeading level={3}>
+        <AnchoredHeading level={this.level}>
           *<span>{this.$slots.default}</span>*
         </AnchoredHeading>
       )
+    },
+    props: {
+      level: {
+        type: Number,
+        default: 3
+      }
     }
   }
 </script>

@@ -76,6 +76,50 @@
       <Icon type="weibo"></Icon>
       <p>weibo</p>
     </div>
+    <div class="icon-item clearfix">
+      <Icon type="loading-buble"></Icon>
+      <p>loading</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="loading-quarter"></Icon>
+      <p>loading</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="loading_3"></Icon>
+      <p>loading</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="loading-3quarters"></Icon>
+      <p>loading</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="person"></Icon>
+      <p>person</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="information"></Icon>
+      <p>information</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="favorite"></Icon>
+      <p>favorite</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="edit"></Icon>
+      <p>edit</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="thumbs-up"></Icon>
+      <p>thumbs-up</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="return"></Icon>
+      <p>return</p>
+    </div>
+    <div class="icon-item clearfix">
+      <Icon type="home"></Icon>
+      <p>home</p>
+    </div>
   </div>
 </template>
 
