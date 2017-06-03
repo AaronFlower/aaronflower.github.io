@@ -8,10 +8,19 @@
 <script>
 import Hello from './components/Hello'
 import Demo from './demo/demo'
+import 'babel-polyfill'
 
 export default {
   components: {
     Hello, Demo
+  },
+  ready () {
+    console.log('set-polyfill')
+    let s = new Set([1, 2, 3, 1])
+    console.log(s)
+    console.log('a-findIndex...')
+    let arr = [1, 2, NaN, 3, 4]
+    console.log(arr.findIndex(isNaN))
   }
 }
 </script>
