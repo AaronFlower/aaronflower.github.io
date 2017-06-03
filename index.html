@@ -3,140 +3,191 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="icon" href="./public/assets/imgs/favicon.ico">
-	<title>AF</title>
-	<link rel="stylesheet" href="./public/css/icon-fonts.css">
-	<link rel="stylesheet" href="./public/css/init.css">
+	<title>Aaron Flower</title>
 	<style>
-		.header {
-			background: #3f51b5;
-			height: 60px;
-			border-bottom: 2px solid #c5cae9;
-			border-bottom-style: outset;
+		#wrapper {
+			position: absolute;
+			top: 30%;
+			left: 50%;
+			margin-left: -130px;
+			text-align: center;
+			font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
 		}
-		.header a {
-			color: #fff;
+		h1 {
+			text-transform: uppercase;
+			font-size: 30px;
+			letter-spacing: 3px;
+		}
+		h2 {
+			font-size: 15px;
+			font-weight: normal;
+			letter-spacing: 0.12em;
+			margin-bottom: 30px;
+			color: #999;
+		}
+		p {
+			letter-spacing: 2px;
+	    font-size: 14px;
+	    line-height: 2em;
+	    margin: 0;
 		}
 		a {
+			color: #999;
 			text-decoration: none;
+			transition: color 0.3s ease;
 		}
-		#articles {
-			width: 50%;
-			margin: auto;
-		}
-		/**
-		 * 注意媒体查询的顺序。
-		 */
-		/*@media screen and (max-width: 900px) {
-			#articles {
-				width: 75%;
-			}
-		}*/
-		/*and (max-width: 0px)*/
-		@media screen 
-		and (max-device-width : 36em)
-		{
-			html {
-				font-size: 59%;
-			}
-/*			.header {
-				height: 120px;
-			}*/
-			#articles {
-				width: 100%;
-			}
-			#articles li.article {
-				padding: 2rem 0 5rem 3rem;
-				margin: 0px;
-			}
-			#tools ul li a {
-				font-size: 3.6rem;
-			}
-		}
-
-		#main h1 {
-	    text-align: center;
-	    color: #F50057;
-	    font-family: Economica, Tahoma, Arial, sans-serif;
-	    text-transform: uppercase;
-		}
-		li.article {
-			margin: 2rem;
-			border-top: 1px solid #ccc;
-			padding: 2rem 0;
-		}
-		li.article h3 {
-			display: inline-block;
-		}
-		li.article a {
-			color: #4183c4;
-		}
-		ul#articles {
-			counter-reset: li;
-		}
-		ul#articles li.article:before {
-			content: counter(li);
-			counter-increment: li;
-			margin-right: 1.8rem;
-		}
-		.avatar {
-			display: inline-block;
-		}
-		#tools {
-			float: right;
-		}
-		#tools ul li {
-			list-style-type: none;
-			display: inline-block;
-			float: left;
-			margin: 0 1rem;
-			line-height: 2.6rem;
-		}
-		#tools a {
-			font-size: 2.6rem;
-		}
-		#tools a:hover {
-			color: #00BCD4;
-		}
-		.row:before, .row:after {
-			content: '';
-			display: table;
-			height: 0;
-			visibility: hidden;
-			clear: both;
+		a:hover {
+			color: #F33;
 		}
 	</style>
 </head>
 <body>
-	<div class="header row">
-		<!-- <div class="avatar"><img src="./public/assets/imgs/af.png" alt=""></div> -->
-		<div id="tools">
-			<ul>
-				<li><a href=""><i class="icon-search"></i></a></li>
-				<li><a href="https://github.com/AaronFlower" target="_blank"><i class="icon-github"></i></a></li>
-				<li><a href="https://twitter.com/Muset_Ozil11" target="_blank"><i class="icon-twitter"></i></a></li>
-				<li><a href="https://www.facebook.com/aaron.flower.370" target="_blank"><i class="icon-facebook"></i></a></li>
-			</ul>
-		</div>
+	<canvas id=c></canvas>
+	<div id="wrapper">
+		<h1>Aaron Flower</h1>
+		<h2>Always Be Coding</h2>
+		<p><a href="https://www.facebook.com/aaron.flower.370" target="_blank">Blog</a></p>
+		<p><a href="https://twitter.com/Muset_Ozil11" target="_blank">Twitter</a></p>
+		<p><a href="https://github.com/AaronFlower" target="_blank">Github</a></p>
 	</div>
-	<div id="main">
-		<h1 class="article">Articles</h1>
-		<ul id="articles">
-			<li class="article">
-				<h3><a href="./public/vue-list-animation.html">Vue List Items Animation...</a></h3>
-				</li>
-			<li class="article">
-				<h3><a href="./public/vue-list-animation.html">Vue Reactivity in Depth...</a></h3>
-			</li>
-			<li class="article">
-				<h3><a href="./projs/vue-1.0-webpack/dist/index.html">Vue 1.0 Webpack Proj</a></h3>
-			</li>			
-			<li class="article">
-				<h3><a href="./projs/vue-2.0-webpack/dist/index.html">Vue 2.0 Webpack Proj</a></h3>
-			</li>
-			<li class="article">
-				<h3><a href="./projs/sundry/gallery.html">Image Gallery</a></h3>
-			</li>
-		</ul>
-	</div>
+	
+	<script>
+		c.width = window.innerWidth
+		c.height = window.innerHeight
+		var s = 1920, 
+				ctx = c.getContext( '2d' ),
+				
+				opts = {
+					
+					strips: 100,
+					radius: 100,
+					insideRadius: 20,
+					depth: 200,
+					rotVel: {
+						x: .0022,
+						y: .003
+					},
+					vanishPoint: {
+						x: c.width * (Math.sqrt(5) - 1) / 2 ,
+						y: c.height * (Math.sqrt(5) - 1) / 2
+					},
+					fl: 250
+				},
+				
+				rot = {
+					
+					x: 0,
+					y: 0,
+					cos: {
+						x: 1,
+						y: 1
+					},
+					sin: {
+						x: 0,
+						y: 0
+					}
+				},
+				
+				stripAngle = ( Math.PI * 2 ) / opts.strips,
+				prevX1, prevY1, prevX2, prevY2;
+		function anim(){
+
+			window.requestAnimationFrame( anim );
+
+			ctx.fillStyle = '#FFF';
+			ctx.fillRect( 0, 0, c.width, c.height );
+			
+			rot.x += opts.rotVel.x;
+			rot.y += opts.rotVel.y;
+			
+			rot.cos.x = Math.cos( rot.x );
+			rot.sin.x = Math.sin( rot.x );
+			rot.cos.y = Math.cos( rot.y );
+			rot.sin.y = Math.sin( rot.y );
+			
+			for( var i = 0; i < opts.strips; ++i ){
+				var ang = i * stripAngle,
+						cos = Math.cos( ang ),
+						sin = Math.sin( ang ),
+						
+						cos2 = Math.cos( ang / 2 ),
+						sin2 = Math.sin( ang / 2 ),
+						
+						x1 = opts.radius + cos2 * opts.insideRadius,
+						x2 = opts.radius - cos2 * opts.insideRadius,
+						y1 = sin2 * opts.insideRadius,
+						y2 = -sin2 * opts.insideRadius,
+						z1 = 0,
+						z2 = 0;
+				
+				//rotation to make a circle
+				var x1a = x1;
+				x1 = x1 * cos; // x1 * cos - z1 * sin, but z1 = 0
+				z1 = x1a * sin; // z1 * cos + x1a * sin, but z1 = 0
+				
+				var x2a = x2;
+				x2 = x2 * cos;
+				z2 = x2a * sin;
+				
+				//rotation on world
+				var y1a = y1, y2a = y2;
+				y1 = y1 * rot.cos.x - z1 * rot.sin.x;
+				z1 = z1 * rot.cos.x + y1a * rot.sin.x;
+				y2 = y2 * rot.cos.x - z2 * rot.sin.x;
+				z2 = z2 * rot.cos.x + y2a * rot.sin.x;
+				
+				var x1a = x1, x2a = x2;
+				x1 = x1 * rot.cos.y - z1 * rot.sin.y;
+				z1 = z1 * rot.cos.y + x1a * rot.sin.y;
+				x2 = x2 * rot.cos.y - z2 * rot.sin.y;
+				z2 = z2 * rot.cos.y + x2a * rot.sin.y;
+				
+				ctx.fillStyle = 'hsla(hue,80%,50%,alp)'
+					.replace( 'hue', ( i / opts.strips ) * 360 )
+					.replace( 'alp',  .5 + -.3 * ( z1 / opts.radius ) );
+				
+				//translation on world
+				z1 += opts.depth;
+				z2 += opts.depth;
+				
+				if( prevX1 ){
+					
+					ctx.beginPath();
+					
+					if( i !== 0 ){
+						ctx.moveTo( prevX2, prevY2 );
+						ctx.lineTo( prevX1, prevY1 );
+					} else {
+						
+						ctx.moveTo( prevX1, prevY1 );
+						ctx.lineTo( prevX2, prevY2 );
+					}
+
+					var screenScale1 = opts.fl / z1;
+					prevX1 = opts.vanishPoint.x + x1 * screenScale1;
+					prevY1 = opts.vanishPoint.y + y1 * screenScale1;
+
+					var screenScale2 = opts.fl / z2;
+					prevX2 = opts.vanishPoint.x + x2 * screenScale2;
+					prevY2 = opts.vanishPoint.y + y2 * screenScale2;
+
+					ctx.lineTo( prevX1, prevY1 );
+					ctx.lineTo( prevX2, prevY2 );
+					ctx.fill();
+				} else {
+					
+					
+					var screenScale1 = opts.fl / z1;
+					prevX1 = opts.vanishPoint.x + x1 * screenScale1;
+					prevY1 = opts.vanishPoint.y + y1 * screenScale1;
+
+					var screenScale2 = opts.fl / z2;
+					prevX2 = opts.vanishPoint.x + x2 * screenScale2;
+					prevY2 = opts.vanishPoint.y + y2 * screenScale2;
+				}
+			}
+		}
+		anim();
+	</script>
 </body>
 </html>
