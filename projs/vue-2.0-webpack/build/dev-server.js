@@ -29,6 +29,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler)
 // force page reload when html-webpack-plugin template changes
+// https://github.com/jantimon/html-webpack-plugin#events
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
     hotMiddleware.publish({ action: 'reload' })
@@ -45,6 +46,8 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(context, options))
 })
 
+// app use 参考 app.use([path,] callback [, callback...])
+// http://expressjs.com/zh-cn/4x/api.html#express
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
