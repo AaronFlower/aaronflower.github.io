@@ -2,7 +2,7 @@
  * service-worker.js
  * 这个文件之所以必须位于应用的根文件夹内，是因为服务工作线程的作用域由该文件所在的目录定义。
  */
-let appShellCacheName = 'pwa-weather-app-shell-cache-1'
+let appShellCacheName = 'pwa-weather-app-shell-cache-2'
 let appDataCacheName = 'pwa-weather-app-data-cache-1'
 
 /**
