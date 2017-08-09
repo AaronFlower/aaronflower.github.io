@@ -15,6 +15,3 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-/* global $:true */
-console.log('Hello global true')
-console.log('$', $)
