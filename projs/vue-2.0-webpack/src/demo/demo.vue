@@ -34,6 +34,13 @@
     <a-input-demo></a-input-demo>
     <h3>滚动条</h3>
     <scroll-bar></scroll-bar>
+    <h3>Switch</h3>
+    <a-switch
+      :name="mySwitch.name"
+      :value="mySwitch.value"
+      v-model="mySwitch.checked"
+    ></a-switch>
+    <p>{{mySwitch}}</p>
   </div>
 </template>
 
@@ -52,6 +59,7 @@
   import TuiComponents from './tuiComponents'
   import ScrollBar from './scrollbar'
   import AInputDemo from '../components/input/demo'
+  import ASwitch from '../components/switch'
 
   export default {
     components: {
@@ -68,7 +76,8 @@
       ScopedSlot,
       TuiComponents,
       ScrollBar,
-      AInputDemo
+      AInputDemo,
+      ASwitch
     },
     props: {
       items: {
@@ -85,7 +94,12 @@
           'Machine Learning',
           'Vue Definitive Guide',
           'Probability'
-        ]
+        ],
+        mySwitch: {
+          checked: true,
+          name: 'open',
+          value: 'on'
+        }
       }
     }
   }
