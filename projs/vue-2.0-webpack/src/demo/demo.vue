@@ -41,6 +41,10 @@
       v-model="mySwitch.checked"
     ></a-switch>
     <p>{{mySwitch}}</p>
+    <h3>Tooltip</h3>
+<!--     <Tooltip>
+      Big big world!
+    </Tooltip> -->
   </div>
 </template>
 
@@ -49,17 +53,18 @@
   import AnchoredHeadingOrigin from '../components/render/anchoredHeadingOrigin'
   import RepeatRender from '../components/render/repeatRender'
   import InputModelRender from '../components/render/inputModelRender'
-  import RenderNonJsx from '../components/render/RenderNonJsx'
-  import RenderJsx from '../components/render/RenderJsx'
+  import RenderNonJsx from '../components/render/renderNonJsx'
+  import RenderJsx from '../components/render/renderJsx'
   import SmartList from '../components/render/smartList'
   import TemplateFoo from '../components/render/templateFoo'
   import FunctionalContainer from '../components/render/functionalContainer'
-  import RichEditor from '../components/editor/RichEditor'
+  import RichEditor from '../components/editor/richEditor'
   import ScopedSlot from '../components/almanac/scopedSlotChild'
   import TuiComponents from './tuiComponents'
   import ScrollBar from './scrollbar'
   import AInputDemo from '../components/input/demo'
   import ASwitch from '../components/switch'
+  import Tooltip from '../components/tooltip'
 
   export default {
     components: {
@@ -77,7 +82,8 @@
       TuiComponents,
       ScrollBar,
       AInputDemo,
-      ASwitch
+      ASwitch,
+      Tooltip
     },
     props: {
       items: {

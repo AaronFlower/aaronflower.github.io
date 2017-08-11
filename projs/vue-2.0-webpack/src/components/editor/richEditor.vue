@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import RenderJsx from '../render/renderJSX'
+  import RenderJsx from '../render/renderJsx'
   import WordDict from './wordDict'
   import Vue from 'vue'
 

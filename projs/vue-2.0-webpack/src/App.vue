@@ -1,26 +1,27 @@
 <template>
   <div id="app">
-    <hello></hello>
+    <h1>Vue 2.0 Demo</h1>
     <almanac></almanac>
     <demo></demo>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Almanac from './components/Almanac'
 import Demo from './demo/demo'
 
 export default {
   name: 'app',
   components: {
-    Hello, Almanac, Demo
+    Almanac, Demo
   }
 }
 </script>
 
 <style>
 @import url(./assets/css/icon-fonts.css);
+@import './assets/css/components/main.css';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
