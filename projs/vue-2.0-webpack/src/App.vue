@@ -19,8 +19,7 @@ export default {
 </script>
 
 <style>
-@import url(./assets/css/icon-fonts.css);
-@import './assets/css/components/main.css';
+@import './assets/css/index.css';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

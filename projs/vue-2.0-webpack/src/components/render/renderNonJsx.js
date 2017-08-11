@@ -3,8 +3,9 @@ import AnchoredHeading from './anchoredHeading'
 
 export default {
   components: { AnchoredHeading },
-  render (createElement) {
-    return createElement(
+  render (h, context) {
+    console.log('render achore anchored-heading...', context)
+    return h(
       'anchored-heading',
       {
         props: {
@@ -12,7 +13,7 @@ export default {
         }
       },
       [
-        createElement(
+        h(
           'p',
           this.$slots.default
         )

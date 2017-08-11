@@ -21,7 +21,10 @@
       <anchored-heading-origin>Foo<p>Functional Component</p></anchored-heading-origin>
     </smart-list> -->
     <h3 class="header-sequence">Template Compiler: Template Foo</h3>
-    <functional-container><template-foo></template-foo></functional-container>
+    <functional-container>
+      <template-foo></template-foo>
+      <p>What is the context argument</p>
+    </functional-container>
     <template-foo></template-foo>
     <h3 class="header-sequence">Rich Editor compile</h3>
     <rich-editor></rich-editor>
@@ -42,9 +45,13 @@
     ></a-switch>
     <p>{{mySwitch}}</p>
     <h3>Tooltip</h3>
-<!--     <Tooltip>
+    <tooltip>
+      <anchored-heading :level="2">Tooltip Header 2</anchored-heading>
+      <anchored-heading :level="3">Tooltip Header 3</anchored-heading>
       Big big world!
-    </Tooltip> -->
+    </tooltip>
+    <tooltip>
+    </tooltip>
   </div>
 </template>
 
