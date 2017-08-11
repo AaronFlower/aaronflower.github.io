@@ -46,11 +46,12 @@
     <p>{{mySwitch}}</p>
     <h3>Tooltip</h3>
     <tooltip>
-      <anchored-heading :level="2">Tooltip Header 2</anchored-heading>
+      <anchored-heading :level="2" :class="['buz', {foo: true, bar: true}]">Tooltip Header 2</anchored-heading>
       <anchored-heading :level="3">Tooltip Header 3</anchored-heading>
       Big big world!
     </tooltip>
-    <tooltip>
+    <tooltip disabled>
+      <p>Disabled no responsed ...</p>
     </tooltip>
   </div>
 </template>

@@ -1,3 +1,50 @@
-.a-tooltip {
+.a-tooltip-el {
   cursor: pointer;
 }
+
+.a-tooltip-el.disabled {
+  cursor: auto;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.a-tooltip {
+  position: absolute;
+  border: 1px solid #ccc;
+  background: #fff;
+  display: inline-block;
+  padding: 10px;
+  animation: zoomIn .3s;
+}
+.a-tooltip.zoom-out {
+  animation: zoomOut .3s forwards;
+}
+.a-tooltip.hidden {
+  display: none;
+}
+
+
