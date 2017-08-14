@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App'
+import Tip from './components/tooltip/tip.vue'
 
 /**
  * 引入 jQuery 及 相关 jQuery 插件。
@@ -10,6 +11,7 @@ import App from './App'
 // require('malihu-custom-scrollbar-plugin')
 
 /* eslint-disable no-new */
+Vue.component('Tip', Tip)
 new Vue({
   el: '#app',
   template: '<App/>',

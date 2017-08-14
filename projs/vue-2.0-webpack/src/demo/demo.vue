@@ -53,6 +53,20 @@
     <tooltip disabled>
       <p>Disabled no responsed ...</p>
     </tooltip>
+    <tooltip content="Tooltip with content argurments">
+      <anchored-heading :level="2">Tooltip Header 2</anchored-heading>
+    </tooltip>
+    <tooltip content="Tootip With slot">
+      <anchored-heading :level="2">Tooltip With Slot</anchored-heading>
+      <div class="tooltip-slot" slot="content">
+        <ul>
+          <li>list 1</li>
+          <li>list 2</li>
+          <li>list 3</li>
+        </ul>
+        Hello slot tooltip
+      </div>
+    </tooltip>
   </div>
 </template>
 
