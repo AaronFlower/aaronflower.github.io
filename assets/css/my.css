@@ -1,4 +1,4 @@
-.section-divider:before {
+.af-sectionDivider:before {
   content: '...';
   display: block;
   color: rgba(0,0,0,.68);
@@ -10,4 +10,8 @@
   font-style: italic;
   font-size: 24px;
   text-align: center;
+}
+
+.af-textAlignCenter {
+	text-align: center;
 }

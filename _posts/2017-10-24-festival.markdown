@@ -4,15 +4,17 @@ title:  "又是一个程序猿节"
 date:   2017-10-24 19:12:35 +0800
 categories: Essays
 ---
+{:.af-textAlignCenter.af-imgSizeFull}
 ![My helpful screenshot]({{ "/assets/imgs/evolution-of-programmer.jpg"}})
 
+{:.af-sectionDivider}
 首先那，祝自己节日快乐啦!
 
 然后，起身看看周围的同事都已经下班了。自己做在办公室发下呆🤔。
 
 近来工作不是太忙了，难道有时间看下自己之前感兴趣的东西。但又发现自己怎么也专注不下了来，心理莫名的浮躁。也许写点东西也能让自己沉下来。
 
-{:.section-divider}
+{:.af-sectionDivider}
 来，现在分析自己的弱点...
 
 坐井观天还似乎有一种优越感，很难踏出自己的舒适区。看别的小伙伴都在新的领域，新的环境大显身手，自己好像毫无波澜。
@@ -23,7 +25,7 @@ categories: Essays
 
 是呀！在原地踏步而『又何知』那？『修身齐家』好像一事无成吧？自己感兴趣想探索的领域还没浅尝就辄止了吧？...
 
-{:.section-divider}
+{:.af-sectionDivider}
 不行，所以要立个 Flag 🚩, 今天起，
 
 - 每周都要更新一篇 POST。
