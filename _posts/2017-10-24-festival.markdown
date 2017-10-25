@@ -6,7 +6,6 @@ categories: Essays
 ---
 ![My helpful screenshot]({{ "/assets/imgs/evolution-of-programmer.jpg"}})
 
-{:.section-divider}
 首先那，祝自己节日快乐啦!
 
 然后，起身看看周围的同事都已经下班了。自己做在办公室发下呆🤔。
