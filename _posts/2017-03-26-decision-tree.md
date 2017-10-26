@@ -16,7 +16,9 @@ What's a decision tree?
 
 {:.af-sectionDivider}
 ### 熵与信息增益(Entropy and Information Gain) 
+
 #### 定义
+
 假设两个信息源发出的字符量是一样的（使用同样的集），那么怎样衡量两个信息源发出的信息量那？我们可以先衡量信息源发出单个字符的信息量。
 
 通常，一个信源发送出什么符号是不确定的。衡量单个字符的信息量，可以根据其出现的概率来度量。概率大，出现机会多，传达信息的不确定性小；反之不确定性就大。不确定性函数 $$f$$ 是概率 P 的**单调递降函数**，即概率越大，不确定性越小；反之亦然。
@@ -53,6 +55,7 @@ $$
 
 {:.af-sectionDivider}
 ### 构造决策树
+
 以提供的简单海洋生物数据来构造下决策树，数据集有两个特征：
 
 1. no surfacing; 
@@ -70,7 +73,7 @@ Order| No Surfacing| flippers | fish
 
 $$
 \begin{aligned}
- H & = -p(x_y) * \log_2{p(x_y)}   -p(x_n) * \log_2{p(x_n)}
+H & = -p(x_y) * \log_2{p(x_y)}   -p(x_n) * \log_2{p(x_n)}
    \\ & = -(\frac{2}{5} *  log_2{\frac{2}{5}}) - -(\frac{3}{5} *  log_2{\frac{3}{5}})
    \\ &\approx 0.5288 + 0.4422 \\ &= 0.971
 \end{aligned}
@@ -78,17 +81,21 @@ $$
  
 #### 2. 按照获取最大信息增益的方法划分数据集(第一轮)
 分别根据不同的特征来确定数据集的划分，用最大信息增益的特征来划分。
-1. 以 no-surfacing 特征来尝试分类：
+1. 以 `no-surfacing` 特征来尝试分类：
 ```
     feature = 'no surfacing',    value = 1 : [1, y], [1, y], [0, n]
                                  value = 0 : [1, no], [1, no]
 ```
 则新的熵为 $$h_1$$ 与信息增益 $$g_1$$：
-\begin{align}
-h_1 &= \frac{3}{5}* (-\frac{2}{3} * \log_2{\frac{2}{3}}  -\frac{1}{3} * \log_2{\frac{1}{3}}) + \frac{2}{5} * (-\log_2{1})
+
+$$
+\begin{aligned}
+    h_1 = a^2
+    h_1 &= \frac{3}{5} * (-\frac{2}{3} * \log_2{\frac{2}{3}}  -\frac{1}{3} * \log_2{\frac{1}{3}}) + \frac{2}{5} * (-\log_2{1})
 \\ &\approx \frac{3}{5} * (0.39 + 0.528) \\ &= 0.5508
 \\ \\ g_1 &= H - h_1 = 0.971 - 0.5508 = 0.4202
-\end{align}
+\end{aligned}
+$$
 
 2. 以 flippers 第二个特征来尝试分类：
 ```
@@ -96,39 +103,54 @@ h_1 &= \frac{3}{5}* (-\frac{2}{3} * \log_2{\frac{2}{3}}  -\frac{1}{3} * \log_2{\
                                 value = 0: [1, no]
 ```
 则新的熵为 $$h_2$$ 与信息增益 $$g_2$$:
-\begin{align}
+
+$$
+\begin{aligned}
 h_2 &= \frac{4}{5}(-\frac{1}{2} * \log_2{\frac{1}{2}} - \frac{1}{2} * \log_2{\frac{1}{2}}) + \frac{1}{5}(-\log_2{1})
 \\ & = 0.8 
 \\ \\ g_2 &= H - h_2 = 0.971 - 0.8 = 0.170951
-\end{align}
+\end{aligned}
+$$
 
 根据最大的信息增益来划分数据集，即根据第一个特征来划分：
-<img src="./decisionTrees01.svg" />
+
+{:.af-textAlignCenter}
+<img src="/assets/imgs/2017-03-26-no-surfacing.svg" />
  
 
 #### 2. 递归按照获取最大信息增益的方法划分数据集(第二轮)¶
 即对还需要划分的子树进行划分，待划分的子树就只有右子树了。
 其基本熵为：
-\begin{align}
-H = - \frac{2}{3} * log_2{\frac{2}{3}} - \frac{1}{3} * log_2{\frac{1}{3}} \approx 0.6365
-\end{align}
+
+$$
+\begin{aligned}
+    H = - \frac{2}{3} * log_2{\frac{2}{3}} - \frac{1}{3} * log_2{\frac{1}{3}} \approx 0.6365
+\end{aligned}
+$$
+
 该子树就只有一个特征值 flippers 了, 根据 flippers 来进行划分。
 ```
     features = flippers, value = 1: [1, y], [1, y]
                          value = 0: [0, n]
 ```
 新的划分熵 $$h_1$$ 及信息增益 $$g_1$$:
-\begin{align}
+
+$$
+\begin{aligned}
 h_1 &= \frac{2}{3} * (-log_2{1}) + \frac{1}{3} * (-log_2{1}) = 0
 \\ g_1 & = 0.6365 - 0 = 0.6365
-\end{align}
+\end{aligned}
+$$
+
 无更多信息增益，可以直接划分。
 
 #### 递归结束的条件
 决策树递归结束的条件是：程序遍历完所有划分数据集的属性，或者每个分支下的所有实例都具有相同的类。
 
 #### 最终生成的决策树
-<img src="./decisionTrees.svg" />
+
+{:.af-textAlignCenter}
+<img src="/assets/imgs/2017-03-26-flippers.svg" />
 
 #### 其它
 
