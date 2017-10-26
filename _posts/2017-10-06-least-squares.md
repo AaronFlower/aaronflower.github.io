@@ -3,6 +3,7 @@ layout: post
 title:  线性回归--最小二乘法
 date:   2017-10-06 19:12:35 +0800
 categories: Essays
+tag: Machine Learnging
 ---
 
 对于线性回归问题，给定一个样本，其根据假设函数得到的预估结果为： $$h(x_i) = \mathbf{\theta}^T \mathbf{x_i} = y_j$$ 。给出所有的样本，我们可以写成矩阵的形式即：$$X\vec{\theta} = \vec{y}$$。这种形式可以看成线性代数里的线性方程组求解问题。
