@@ -8,4 +8,4 @@ tag: edm
 - Jamie XX
 - Chet Faker
 - Fourtet
-
+- PURPLE DISCO MACHINE
