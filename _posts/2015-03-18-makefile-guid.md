@@ -224,3 +224,4 @@ clean:
 1. [A Simple Makefile Tutorial](http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
 2. 关于 `-lm` 的问题是历史问题，参考 [Why do you need an explicit `-lm` compiler option ](https://stackoverflow.com/questions/10371647/why-do-you-need-an-explicit-lm-compiler-option) 和 [gcc: why the -lm flag is needed to link the math library? ](https://stackoverflow.com/questions/4606301/gcc-why-the-lm-flag-is-needed-to-link-the-math-library)
 3. [Github demo](https://github.com/AaronFlower/cplusplus/tree/master/makefile-tutorial/00-hello)
+4. 延伸 [CMake Tutorial](http://www.hahack.com/codes/cmake/)
