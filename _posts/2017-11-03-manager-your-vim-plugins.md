@@ -105,9 +105,12 @@ git clone http://github.com/username/dotvim.git ~/.vim
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
 cd ~/.vim
-# 下在两个命令可以合并成一条： git submodule update --init.
-git submodule init
-git submodule update
+
+# 初始化 submodule
+git submodule update --init --recursive
+
+# 如果的插件需要单独配置，就自行配置如 YouCompleteMe 在安装完成后，还需要执行下面的命令
+bundle/YouCompleteMe/install.py --go-completer --js-completer --clang-completer 
 ```
 
 {:.af-sectionDivider}
