@@ -37,6 +37,11 @@ export https_proxy=http://localhost:1080
 {:.af-sectionDivider}
 ### 解决方法
 
+--> 请直接用鼠标滑到**最后**看解决方法。
+
+
+------
+
 我们可以使用 [Privoxy](http://www.privoxy.org/)来解决这个问题。因为 Privoxy 除了可以直接代理 HTTP 层外，还可以将 HTTP 转发到 SOCKS5 服务器上。原理及具体操作如下：
 
 
@@ -100,6 +105,39 @@ Please join Telegram group https://t.me/sbfans if you have any issues. / 如有�
  (__ __)//
 ```
 
-#### 最后
+#### 6. 配置成命令
+为了方便我们可以配置方法写在 `.bashrc` 文件中，在终端中通过命令就可以调用啦。
+```bash
+# privoxy proxy
+proxy () {
+    echo "start use privoxy proxy"
+    brew services start privoxy
+    export no_proxy=localhost,127.0.0.0,127.0.0.1,127.0.1.1,local.home
+    export http_proxy=http://localhost:8118
+    export https_proxy=http://localhost:8118
+}
+
+# no privoxy
+noproxy () {
+    echo "stop use privoxy proxy"
+    brew services stop privoxy
+    export http_proxy=
+    export https_proxy=
+}
+```
+
+-------
+
+### 最后
+
+解决方法是直接把代理写成 `socks5://localhost:1080` 呀！^_^ 😂
+
+```bash
+export http_proxy=socks5://localhost:1080
+export https_proxy=$http_proxy
+```
+如果看到了中间部分的内容，了解下 Pvivoxy, Tor 也是可以的。
 
 #### 参考
+- [使用 shadowsocks 加速 Mac 自带终端或iTerm 2](https://tech.jandou.com/to-accelerate-the-terminal.html)
+- [iterm通过代理访问网络](https://blog.csdn.net/huyuyang6688/article/details/79914884)
