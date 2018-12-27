@@ -78,9 +78,9 @@ interface History {
 {:.af-sectionDivider}
 ### popstate 事件
 
-每当当前历史记录项发生变化时，就会触发 window 的 `popstate`事件。如果当前历史记录项是由 `pushState,replaceState`改变的，则该事件的 `state` 会包含当前历史记录状态的对象拷贝。
+每当当前历史记录项(entry 游标)发生变化时，就会触发 window 的 `popstate`事件。如果当前历史记录项是由 `pushState,replaceState`改变的，则该事件的 `state` 会包含当前历史记录状态的对象拷贝。
 
-调用`history.pushState()`或者`history.replaceState()`不会触发popstate事件. `popstate`事件只会在浏览器某些行为下触发, 比如点击后退、前进按钮(或者在JavaScript中调用`history.back()、history.forward()、history.go()`方法).
+ `popstate`事件只会在浏览器某些行为下触发, 比如点击后退、前进按钮(或者在JavaScript中调用`history.back()、history.forward()、history.go()`方法).
 
 当网页加载时,各浏览器对`popstate`事件是否触发有不同的表现,Chrome 和 Safari会触发`popstate`事件, 而Firefox不会.
 
