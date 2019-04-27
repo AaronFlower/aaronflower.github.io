@@ -48,12 +48,12 @@ void sayHello (void) {
 现在可以执行下面的命令来编译代码集：
 
 ```bash
- gcc -o out.o say.c main.c -I. 
+ gcc -o out.o say.c main.c -I.
 ```
 
 `gcc` 将两个 `.c` 文件编译成可执行文件 `out.o`。选项 `-I.`  告诉 `gcc` 在当前文件夹中寻找头文件 `say.h`。在没有 makefile 的情况下，项目的编译、修改、调试需要在终端中来回输入命令来执行，特别当你增加 `.c` 文件时还需要更新命令。
 
-所以，命令行有两个问题： 
+所以，命令行有两个问题：
 
 1. 每次都需要重新输入命令。
 2. 如果你只是改变了其中一个 `.c` 文件，命令行重新编译时需要编译所有文件是非常耗时的。
@@ -72,7 +72,7 @@ hellomake: main.c say.c
 在命令行中执行 `make` 命令，将执行 `makefile` 中的 `gcc -o say.o main.c say.c -I.` 命令。
 
 ```bash
-$ make 
+$ make
 gcc -o say.1.o main.c say.c -I.
 $ ./say.1.o
 Hello makefile!
@@ -105,11 +105,11 @@ hellomake: main.o say.o
 在执行 `make` 命令时指定文件，
 
 ```bash
-$ make -f 2.Makefile 
+$ make -f 2.Makefile
 gcc -I.   -c -o main.o main.c
 gcc -I.   -c -o say.o say.c
 gcc -o say.2.o main.o say.o -I.
-$ ./say.2.o  
+$ ./say.2.o
 Hello makefile!
 ```
 
@@ -135,7 +135,7 @@ hellomake: main.o say.o
 执行命令：
 
 ```bash
-$ make -f 3.Makefile   
+$ make -f 3.Makefile
 gcc -c -o main.o main.c -I.
 gcc -c -o say.o say.c -I.
 gcc -o say.3.o main.o say.o -I.
@@ -145,7 +145,7 @@ gcc -o say.3.o main.o say.o -I.
 
 在通配规则中我们使用了 make 自动注入的自动变量，一些常用的[自动变量(automatic vaiables)](https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html)，用到时候可以查阅。
 
--  `$@` ：target 
+-  `$@` ：target
 - `$<`: prerequisites 的第一项。
 - `$^`: 所有的 prerequisites 项，用空格分隔。
 
@@ -171,7 +171,7 @@ hellomake: $(OBJ)
 执行：
 
 ```bash
-$ make -f 4.Makefile  
+$ make -f 4.Makefile
 gcc -c -o main.o main.c -I.
 gcc -c -o say.o say.c -I.
 gcc -o say.4.o main.o say.o -I.
@@ -200,10 +200,10 @@ LDIR=../lib
 LIBS=-lm
 
 _DEPS = say.h
-DEPS = $(pathsubst %, $(IDIR)/%, $(_DEPS))
+DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS))
 
 _OBJ = main.o say.o
-OBJ = $(pathsubst %, $(ODIR)/%, $(_OBJ))
+OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)
     $(CC) -c -o $@ $< $(CFLAGS)
