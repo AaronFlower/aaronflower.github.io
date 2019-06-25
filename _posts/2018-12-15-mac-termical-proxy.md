@@ -88,7 +88,8 @@ export https_proxy='http://localhost:8118'
 #### 4. 启动 Provixy 服务器
 
 ```bash
-brew service provixy start
+sudo brew services list
+sudo brew services start privoxy
 ```
 
 #### 5. 测试
@@ -136,7 +137,7 @@ noproxy () {
 export http_proxy=socks5://localhost:1080
 export https_proxy=$http_proxy
 ```
-如果看到了中间部分的内容，了解下 Pvivoxy, Tor 也是可以的。
+如果看到了中间部分的内容，了解下 Pvivoxy, Tor 也是可以的。不过如果使用 Docker 的话，代理还是最好设置成 http 的，而不是使用 socks5 协议。
 
 #### 参考
 - [使用 shadowsocks 加速 Mac 自带终端或iTerm 2](https://tech.jandou.com/to-accelerate-the-terminal.html)
