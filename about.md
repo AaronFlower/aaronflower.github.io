@@ -6,13 +6,6 @@ permalink: /about/
 
 Thanks for your time.
 
-My Github: [AaronFlower](https://github.com/AaronFlower)
-
-
-My Twitter: [AaronFlower](https://twitter.com/Muset_Ozil11)
-
-My Tumblr: [AaronFlower](https://aaronflower.tumblr.com)
-
 ### Todo List
 - [x] jekyll blog
 - [ ] Post list must have a picture. medium
